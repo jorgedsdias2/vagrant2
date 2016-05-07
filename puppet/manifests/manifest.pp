@@ -123,6 +123,23 @@ class install_phpmyadmin {
   }
 }
 
+# PostgreSQL
+
+class install_postgresql {
+
+  package { "postgresql":
+    ensure => present,
+  }
+
+  package { "pgadmin3":
+    ensure => present,
+  }
+
+  package { "libpq-dev":
+    ensure => present,
+  }
+}
+
 # Packages
 
 class install_packages {
@@ -145,9 +162,9 @@ class install_packages {
   }
 
   # ExecJS runtime.
-  package { 'nodejs':
-    ensure => present
-  }
+  #package { 'nodejs':
+  #  ensure => present
+  #}
 
   package { 'vim':
     ensure => present
@@ -161,4 +178,5 @@ include install_apache
 include install_php
 include install_mysql
 include install_phpmyadmin
+include install_postgresql
 include install_packages
